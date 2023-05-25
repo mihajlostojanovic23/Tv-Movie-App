@@ -21,7 +21,7 @@ function Movies() {
     fetchMovies();
     },[])
   return (
-    <div className=' '>{movies.map((movie) => <Movie key={movie.id} data={ movie} />)}</div>
+    <div className=' flex flex-wrap gap-4 items-center bg-[#292727] justify-center'>{movies.map((movie) => <Movie key={movie.id} data={ movie} />)}</div>
   )
 }
 
