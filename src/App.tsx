@@ -1,12 +1,14 @@
-import Movies from './components/Movies'
+import {
+  BrowserRouter as Router,
+} from "react-router-dom";
+import Routes from "./routes";
 
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello world</h1>
-      <Movies/>
-    </div>
+    <Router>
+      <Routes/>
+    </Router>
   );
 }
 
