@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { getDiscoverMovies, searchMovies, getCategoryMovies, getImageUrl } from '../../api/services/apiService';
+import { useEffect, useState } from 'react'
+import { getDiscoverMovies } from '../../api/services/apiService';
 import Movie from '../Movie';
 
 

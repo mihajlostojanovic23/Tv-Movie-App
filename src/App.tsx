@@ -1,14 +1,20 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import {
-  BrowserRouter as Router,
-} from "react-router-dom";
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
 import Routes from "./routes";
 
+// Create a client
+const queryClient = new QueryClient()
 
 function App() {
   return (
+     <QueryClientProvider client={queryClient}>
     <Router>
       <Routes/>
-    </Router>
+      </Router>
+      </QueryClientProvider>
   );
 }
 

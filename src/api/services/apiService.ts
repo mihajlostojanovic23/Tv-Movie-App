@@ -1,15 +1,21 @@
 // api/services/apiService.ts
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
-const API_DISCOVERY = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_API_KEY}&page=1`;
-const API_SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=`;
-const IMG_API = 'https://image.tmdb.org/t/p/w400/';
-const POSTER = 'https://image.tmdb.org/t/p/w1280/';
-const Category_API = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=27&page=1`;
 
-export const fetchData = async (url: string) => {
+
+// Create an instance of axios with custom configuration
+const axiosInstance: AxiosInstance = axios.create({
+  baseURL: 'https://api.themoviedb.org',
+  params: {
+    api_key: process.env.REACT_APP_API_KEY,
+  },
+});
+
+
+
+export const fetchData = async (url: string | any) => {
   try {
-    const response = await axios.get(url);
+    const response = await axiosInstance.get(url);
     return response.data;
   } catch (error) {
     // Handle error
@@ -19,22 +25,22 @@ export const fetchData = async (url: string) => {
 };
 
 export const getDiscoverMovies = async () => {
-  return await fetchData(API_DISCOVERY);
+  return await fetchData(process.env.REACT_APP_API_DISCOVERY);
 };
 
 export const searchMovies = async (query: string) => {
-  const searchUrl = `${API_SEARCH}${query}`;
+  const searchUrl = `${process.env.REACT_APP_API_SEARCH}${query}`;
   return await fetchData(searchUrl);
 };
 
 export const getCategoryMovies = async () => {
-  return await fetchData(Category_API);
+  return await fetchData(process.env.REACT_APP_CATEGORY_API);
 };
 
 export const getImageUrl = (path: string) => {
-  return `${IMG_API}${path}`;
+  return `${process.env.REACT_APP_IMG_API}${path}`;
 };
 
 export const getPosterUrl = (path: string) => {
-  return `${POSTER}${path}`;
+  return `${process.env.REACT_APP_POSTER}${path}`;
 };

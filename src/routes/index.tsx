@@ -7,7 +7,8 @@ const Routes: React.FC = () => {
   return (
     <Switch>
       <Route path="/" exact>
-         <Movies />
+        
+          <Movies />
       </Route>
       
     </Switch>
