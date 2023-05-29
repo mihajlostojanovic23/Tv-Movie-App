@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import Layout from '../components/layouts/Layout';
 
 interface IPrivateRouteProps {
   isAuthenticated: boolean;
@@ -18,7 +19,9 @@ const PrivateRoute: React.FC<IPrivateRouteProps> = ({
     <Route
       render={(props) =>
         isAuthenticated ? (
+          <Layout>
           <Component {...props} />
+          </Layout>
         ) : (
           <Redirect to="/signin" />
         )

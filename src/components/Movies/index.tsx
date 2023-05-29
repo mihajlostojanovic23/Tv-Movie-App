@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getDiscoverMovies } from '../../api/services/apiService';
+
+//Component
 import Movie from '../Movie';
 
 
@@ -21,7 +23,7 @@ function Movies() {
     fetchMovies();
     },[])
   return (
-    <div className=' flex flex-wrap gap-4 items-center bg-[#292727] justify-center'>{movies.map((movie) => <Movie key={movie.id} data={ movie} />)}</div>
+    <div className='flex flex-wrap gap-4 items-center bg-[#292727] justify-center'>{movies.map((movie) => <Movie key={movie.id} data={ movie} />)}</div>
   )
 }
 

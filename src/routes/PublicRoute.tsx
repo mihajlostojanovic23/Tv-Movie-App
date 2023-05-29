@@ -1,6 +1,9 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import Layout from '../components/layouts/Layout';
 
+
+//Interface
 interface IPublicRouteProps {
   isAuthenticated: boolean;
   component: React.ComponentType<any>;
@@ -14,14 +17,17 @@ const PublicRoute: React.FC<IPublicRouteProps> = ({
   component: Component,
   ...restProps
 }) => {
+  
   return (
     <Route
       {...restProps}
       render={(props) =>
         isAuthenticated ?(
-          <Redirect to="/dashboard" />
+          <Redirect to="/" />
         ) : (
-          <Component {...props} />
+            <Layout>
+              <Component {...props} />
+            </Layout>
         )
       }
     />

@@ -1,12 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-const Sidebar: React.FC = () => {
+function SideBar() {
   return (
-    <div className="sidebar absolute top-0 left-0 h-[100vh] w-[300px] bg-[red]">
-   
-         
-    </div>
-  );
-};
+    <div className=' w-[300px] fixed bg-[#000000] h-[100vh] flex justify-center pt-[10px]'>SideBar</div>
+  )
+}
 
-export default Sidebar;
+export default SideBar
