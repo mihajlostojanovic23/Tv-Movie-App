@@ -1,16 +1,16 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch} from 'react-router-dom';
 import Movies from '../components/Movies';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+import Login from '../pages/Login';
 
 
 const Routes: React.FC = () => {
   return (
     <Switch>
-      <Route path="/" exact>
-        
-          <Movies />
-      </Route>
-      
+      <PrivateRoute component={Movies} isAuthenticated={true} path={'/'} exact={true} />
+      <PublicRoute component={Login} isAuthenticated={false} path={'/signin'} exact={true} />
     </Switch>
   );
 };
