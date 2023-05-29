@@ -1,8 +1,6 @@
 // api/services/apiService.ts
 import axios, { AxiosInstance } from 'axios';
 
-
-
 // Create an instance of axios with custom configuration
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: 'https://api.themoviedb.org',
@@ -10,8 +8,6 @@ const axiosInstance: AxiosInstance = axios.create({
     api_key: process.env.REACT_APP_API_KEY,
   },
 });
-
-
 
 export const fetchData = async (url: string | any) => {
   try {

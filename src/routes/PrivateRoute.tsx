@@ -6,7 +6,7 @@ interface IPrivateRouteProps {
   isAuthenticated: boolean;
   component: React.ComponentType<any>;
   path: string;
-  exact: boolean
+  exact: boolean;
   // Add any additional props if needed
 }
 
@@ -17,10 +17,11 @@ const PrivateRoute: React.FC<IPrivateRouteProps> = ({
 }) => {
   return (
     <Route
+      {...restProps}
       render={(props) =>
         isAuthenticated ? (
           <Layout>
-          <Component {...props} />
+            <Component {...props} />
           </Layout>
         ) : (
           <Redirect to="/signin" />
