@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getDiscoverMovies } from '../../api/services/apiService';
+import { withFocusable } from '@noriginmedia/react-spatial-navigation';
 
 //Component
 import Movie from '../Movie';
@@ -41,4 +42,4 @@ function Movies() {
   );
 }
 
-export default Movies;
+export default withFocusable()(Movies);

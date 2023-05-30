@@ -29,4 +29,4 @@ function SideBar() {
   );
 }
 
-export default withFocusable()(SideBar);
+export default withFocusable({})(SideBar);

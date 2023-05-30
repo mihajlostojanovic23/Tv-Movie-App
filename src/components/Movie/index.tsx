@@ -12,7 +12,7 @@ interface IMovie {
   focused: boolean;
 }
 
-function Movie({ data, setFocus, focused }: IMovie) {
+function Movie({ data, focused }: IMovie) {
   return (
     <div>
       <img height={300} src={getImageUrl(data.backdrop_path)} />
@@ -27,4 +27,6 @@ function Movie({ data, setFocus, focused }: IMovie) {
   );
 }
 
-export default withFocusable()(Movie);
+export default withFocusable({
+  trackChildren: true,
+})(Movie);

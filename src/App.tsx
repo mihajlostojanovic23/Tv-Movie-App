@@ -8,7 +8,7 @@ import { initNavigation } from '@noriginmedia/react-spatial-navigation';
 
 initNavigation({
   debug: true,
-  visualDebug: false,
+  visualDebug: true,
 });
 
 // Create a client
