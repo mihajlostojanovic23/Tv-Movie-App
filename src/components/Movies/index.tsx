@@ -4,9 +4,10 @@ import { getDiscoverMovies } from '../../api/services/apiService';
 //Component
 import Movie from '../Movie';
 
-interface IMovieData {
+export interface IMovieData {
   id: number;
   backdrop_path: string;
+  original_title: string;
 }
 
 function Movies() {
@@ -27,7 +28,14 @@ function Movies() {
   return (
     <div className="flex flex-wrap gap-4 items-center bg-[#292727] justify-center">
       {movies.map((movie) => (
-        <Movie key={movie.id} data={movie} />
+        <Movie
+          key={movie.id}
+          data={movie}
+          focusKey={`movie-${movie.id}`}
+          onEnterPress={() => {
+            alert(movie.id);
+          }}
+        />
       ))}
     </div>
   );

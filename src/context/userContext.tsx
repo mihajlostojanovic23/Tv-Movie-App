@@ -5,6 +5,8 @@ import { createContext, Dispatch, SetStateAction, useState } from 'react';
 interface IDataValueContext {
   userInfo: object;
   setUserInfo: Dispatch<SetStateAction<object>>;
+  userAuth: boolean;
+  setUserAuth: Dispatch<SetStateAction<boolean>>;
 }
 
 interface UserProviderProps {
@@ -14,14 +16,19 @@ interface UserProviderProps {
 const UserContext = createContext<IDataValueContext>({
   userInfo: {},
   setUserInfo: () => null,
+  userAuth: false,
+  setUserAuth: () => null,
 });
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [userInfo, setUserInfo] = useState({});
+  const [userAuth, setUserAuth] = useState(true);
 
   return (
     <div>
-      <UserContext.Provider value={{ userInfo, setUserInfo }}>
+      <UserContext.Provider
+        value={{ userInfo, setUserInfo, userAuth, setUserAuth }}
+      >
         {children}
       </UserContext.Provider>
     </div>

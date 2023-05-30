@@ -4,6 +4,13 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import Routes from './routes';
 import { UserProvider } from './context/userContext';
 
+import { initNavigation } from '@noriginmedia/react-spatial-navigation';
+
+initNavigation({
+  debug: true,
+  visualDebug: false,
+});
+
 // Create a client
 const queryClient = new QueryClient();
 
