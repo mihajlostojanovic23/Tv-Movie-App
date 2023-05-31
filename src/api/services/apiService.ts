@@ -20,8 +20,9 @@ export const fetchData = async (url: string | any) => {
   }
 };
 
-export const getDiscoverMovies = async () => {
-  return await fetchData(process.env.REACT_APP_API_DISCOVERY);
+export const getDiscoverMovies = async (page: number) => {
+  const url = `${process.env.REACT_APP_API_DISCOVERY}&page=${page}`;
+  return await fetchData(url);
 };
 
 export const searchMovies = async (query: string) => {
