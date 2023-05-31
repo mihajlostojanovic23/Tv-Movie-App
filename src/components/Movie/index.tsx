@@ -14,13 +14,14 @@ interface IMovie {
 
 function Movie({ data, focused }: IMovie) {
   return (
-    <div>
-      <img height={300} src={getImageUrl(data.backdrop_path)} />
-      <span
+    <div className="h-[330px] transition-all duration-500 ease-in-out">
+      <img
         className={`${
-          focused ? 'text-[red]' : 'text-[white]'
-        } justify-center flex text-[20px] py-2`}
-      >
+          focused ? 'border-4 border-sky-500' : 'border-4 border-transparent'
+        }`}
+        src={getImageUrl(data.backdrop_path)}
+      />
+      <span className={` text-[white] justify-center flex text-[20px] py-2 `}>
         {data.original_title}
       </span>
     </div>

@@ -6,9 +6,11 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
 //Pages
-import Login from '../pages/Login';
-import Movies from '../components/Movies';
+import Movies from '../containers/Movies';
 import UserContext from '../context/userContext';
+import Login from '../containers/Login';
+import Settings from '../containers/Settings';
+import MyList from '../containers/MyList';
 
 const Routes: React.FC = () => {
   const { userAuth } = useContext(UserContext);
@@ -24,6 +26,19 @@ const Routes: React.FC = () => {
         component={Login}
         isAuthenticated={userAuth}
         path={'/signin'}
+        exact={true}
+      />
+
+      <PrivateRoute
+        component={Settings}
+        isAuthenticated={userAuth}
+        path={'/settings'}
+        exact={true}
+      />
+      <PrivateRoute
+        component={MyList}
+        isAuthenticated={userAuth}
+        path={'/mylist'}
         exact={true}
       />
     </Switch>

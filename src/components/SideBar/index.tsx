@@ -4,14 +4,24 @@ import { withFocusable } from '@noriginmedia/react-spatial-navigation';
 import { MenuData } from '../../data/MenuData';
 import MenuItem from './SideBarItem';
 import UserContext from '../../context/userContext';
+import { useHistory } from 'react-router-dom';
 
-function SideBar() {
+interface ISideBar {
+  hasFocusedChild: boolean;
+}
+
+function SideBar({ hasFocusedChild }: ISideBar) {
+  const history = useHistory();
   const { userAuth } = useContext(UserContext);
-  const Alert = (title: string) => {
-    alert(title);
-  };
+  const Alert = (route: string) => history.push(`${route}`);
   return (
-    <div className=" w-[300px] fixed bg-[#000000] h-[100vh] flex justify-center pt-[10px]">
+    <div
+      className={` bg-[#000000] h-[100vh] flex justify-center pt-[10px] ${
+        hasFocusedChild
+          ? 'w-[300px] transition-all duration-500 ease-in-out '
+          : 'w-[200px] transition-all duration-500 ease-in-out '
+      }`}
+    >
       <div className="flex justify-center flex-col items-center">
         {MenuData.map(
           (item) =>
@@ -20,7 +30,7 @@ function SideBar() {
                 key={item.id}
                 data={item}
                 focusKey={`item-${item.id}`}
-                onEnterPress={() => Alert(item.title)}
+                onEnterPress={() => Alert(item.route)}
               />
             )
         )}
@@ -29,4 +39,4 @@ function SideBar() {
   );
 }
 
-export default withFocusable({})(SideBar);
+export default withFocusable({ trackChildren: true })(SideBar);

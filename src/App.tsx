@@ -7,8 +7,8 @@ import { UserProvider } from './context/userContext';
 import { initNavigation } from '@noriginmedia/react-spatial-navigation';
 
 initNavigation({
-  debug: true,
-  visualDebug: true,
+  debug: false,
+  visualDebug: false,
 });
 
 // Create a client

@@ -9,7 +9,7 @@ interface SidebarProps {
 const Layout: React.FC<SidebarProps> = ({ children }) => {
   return (
     <div className="flex">
-      <div className="sidebar  w-[300px] text-[white] text-[30px]">
+      <div className="sidebar text-[white] text-[30px]">
         <SideBar />
       </div>
       <main className="flex-1">{children}</main>

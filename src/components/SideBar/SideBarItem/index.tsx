@@ -18,7 +18,11 @@ function MenuItem({ data, setFocus, focused }: IMenuItem) {
   }, []);
 
   return (
-    <div className={`my-3 ${focused ? 'text-[white]' : 'text-[grey]'}`}>
+    <div
+      className={`my-3 ${
+        focused ? 'text-[white]' : 'text-[grey]'
+      } cursor-default`}
+    >
       {data.title}
     </div>
   );
