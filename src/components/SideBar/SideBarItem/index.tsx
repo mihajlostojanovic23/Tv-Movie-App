@@ -15,7 +15,7 @@ function MenuItem({ data, setFocus, focused }: IMenuItem) {
   //Initial setting focus
   useEffect(() => {
     setFocus('item-1');
-  }, []);
+  }, [setFocus]);
 
   return (
     <div

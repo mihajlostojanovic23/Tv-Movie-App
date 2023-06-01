@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useInfiniteQuery, useQuery } from 'react-query';
+import React, { useRef } from 'react';
+import { useInfiniteQuery } from 'react-query';
 import { getDiscoverMovies } from '../../api/services/apiService';
 import Movie from '../../components/Movie';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
+import Button from '../../components/Button';
 
 export interface IMovieData {
   id: number;
@@ -10,37 +11,51 @@ export interface IMovieData {
   original_title: string;
 }
 
+type setFocus = {
+  setFocus: (focus: string) => void;
+};
+
 function Movies() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [movies, setMovies] = useState();
   const fetchMovies = async (page = 1) => {
     const data = await getDiscoverMovies(page);
-    setMovies(data);
+
     return data;
   };
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery('movies', ({ pageParam }) => fetchMovies(pageParam), {
       getNextPageParam: (lastPage) => {
-        console.log(lastPage.page);
         const currentPage = lastPage.page || 1;
         return currentPage + 1;
       },
     });
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo(0, 0); // Scroll to the top when new pages are loaded
-    }
-  }, [data]);
-
-  const onProgramFocused = ({ y }: { y: number }) => {
+  const onProgramFocused = (
+    {
+      y,
+      width,
+      height,
+      top,
+      left,
+      node,
+    }: {
+      y: number;
+      width: number;
+      height: number;
+      top: number;
+      left: number;
+      node: number;
+    },
+    { prop1, prop2 }: { prop1: any; prop2: any },
+    { event, other }: { event: any; other: any }
+  ) => {
+    console.log(event);
     if (scrollRef.current) {
       scrollRef.current.style.transform = `translateY(-${y}px)`;
       scrollRef.current.style.transition = '300ms';
     }
   };
-  console.log(data);
+
   return (
     <div
       ref={scrollRef}
@@ -60,12 +75,21 @@ function Movies() {
         ))
       )}
       {hasNextPage && (
-        <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-          {isFetchingNextPage ? 'Loading more...' : 'Load More'}
-        </button>
+        <Button
+          onEnterPress={({ setFocus }: setFocus) => {
+            fetchNextPage();
+            setFocus(
+              `movie-${data?.pages[data?.pages.length - 1]?.results[16].id}`
+            );
+          }}
+        />
+
+        // <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+        //   {isFetchingNextPage ? 'Loading more...' : 'Load More'}
+        // </button>
       )}
     </div>
   );
 }
 
-export default withFocusable({})(Movies);
+export default withFocusable({ trackChildren: true })(Movies);

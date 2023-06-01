@@ -7,7 +7,7 @@ import { UserProvider } from './context/userContext';
 import { initNavigation } from '@noriginmedia/react-spatial-navigation';
 
 initNavigation({
-  debug: false,
+  debug: true,
   visualDebug: false,
 });
 
