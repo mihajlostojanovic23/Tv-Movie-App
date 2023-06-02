@@ -10,6 +10,9 @@ interface IPrivateRouteProps {
   // Add any additional props if needed
 }
 
+//Todo: Solve any
+//Todo: Add User context and wrap inside Route
+
 const PrivateRoute: React.FC<IPrivateRouteProps> = ({
   isAuthenticated,
   component: Component,

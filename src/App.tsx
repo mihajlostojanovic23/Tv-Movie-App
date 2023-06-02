@@ -7,12 +7,16 @@ import { UserProvider } from './context/userContext';
 import { initNavigation } from '@noriginmedia/react-spatial-navigation';
 
 initNavigation({
-  debug: true,
+  debug: false,
   visualDebug: false,
 });
 
 // Create a client
 const queryClient = new QueryClient();
+
+// Todo: Create Providers folder inside component folder and create QuueryContextProvider fodler and index.tsx and make logic for query client and provider indside
+// Todo: UserProvider wrap in private route
+// Todo: Coment inports
 
 function App() {
   return (

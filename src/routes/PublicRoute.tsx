@@ -11,6 +11,12 @@ interface IPublicRouteProps {
   // Add any additional props if needed
 }
 
+//Todo: Reaname routes to Routing
+//Todo: Rename PublicRoute.tsx to index tsx and create separate folders
+//Todo: Move to components folder public and private routes
+//Todo: Solve any
+//Todo: Delete check logic for isauthenticated because this is public route and authentification is not necessery
+
 const PublicRoute: React.FC<IPublicRouteProps> = ({
   isAuthenticated,
   component: Component,

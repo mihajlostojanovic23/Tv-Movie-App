@@ -2,6 +2,7 @@
   "name": "axios",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@noriginmedia/react-spatial-navigation": "^2.12.9",
     "@testing-library/jest-dom": "^5.16.5",

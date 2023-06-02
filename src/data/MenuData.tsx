@@ -1,3 +1,5 @@
+// Todo: Try to remove userAuth because you already put components in private or public route
+
 export const MenuData = [
   { id: 1, title: 'Home', userAuth: true, route: '/' },
   { id: 2, title: 'Settings', userAuth: true, route: '/settings' },

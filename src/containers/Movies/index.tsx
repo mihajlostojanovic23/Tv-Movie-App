@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
-import { getDiscoverMovies } from '../../api/services/apiService';
+import { getDiscoverMovies } from '../../api/axiosInstance';
 import Movie from '../../components/Movie';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
 import Button from '../../components/Button';
@@ -11,45 +11,34 @@ export interface IMovieData {
   original_title: string;
 }
 
+//Todo: Export types in type file
+//Todo: Export logic to custom hook
+//Todo: Solve any
+
 type setFocus = {
   setFocus: (focus: string) => void;
 };
 
 function Movies() {
   const scrollRef = useRef<HTMLDivElement>(null);
+
   const fetchMovies = async (page = 1) => {
     const data = await getDiscoverMovies(page);
 
     return data;
   };
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery('movies', ({ pageParam }) => fetchMovies(pageParam), {
+  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    'movies',
+    ({ pageParam }) => fetchMovies(pageParam),
+    {
       getNextPageParam: (lastPage) => {
         const currentPage = lastPage.page || 1;
         return currentPage + 1;
       },
-    });
-  const onProgramFocused = (
-    {
-      y,
-      width,
-      height,
-      top,
-      left,
-      node,
-    }: {
-      y: number;
-      width: number;
-      height: number;
-      top: number;
-      left: number;
-      node: number;
-    },
-    { prop1, prop2 }: { prop1: any; prop2: any },
-    { event, other }: { event: any; other: any }
-  ) => {
-    console.log(event);
+    }
+  );
+  const onProgramFocused = ({ y }: { y: number }) => {
     if (scrollRef.current) {
       scrollRef.current.style.transform = `translateY(-${y}px)`;
       scrollRef.current.style.transition = '300ms';

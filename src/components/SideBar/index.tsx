@@ -10,6 +10,9 @@ interface ISideBar {
   hasFocusedChild: boolean;
 }
 
+//Todo rename alert in something logic
+//Todo move Sidebar to layout folder
+
 function SideBar({ hasFocusedChild }: ISideBar) {
   const history = useHistory();
   const { userAuth } = useContext(UserContext);

@@ -12,6 +12,8 @@ import Login from '../containers/Login';
 import Settings from '../containers/Settings';
 import MyList from '../containers/MyList';
 
+//Todo: Create Routes file in Containers folder and name it Routes.tsx
+
 const Routes: React.FC = () => {
   const { userAuth } = useContext(UserContext);
   return (

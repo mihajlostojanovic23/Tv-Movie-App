@@ -13,6 +13,8 @@ interface UserProviderProps {
   children: React.ReactNode;
 }
 
+//Todo: Expoort this interfaces to types.ts file inside context folder
+
 const UserContext = createContext<IDataValueContext>({
   userInfo: {},
   setUserInfo: () => null,

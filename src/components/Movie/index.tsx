@@ -1,5 +1,5 @@
 import React from 'react';
-import { getImageUrl } from '../../api/services/apiService';
+import { getImageUrl } from '../../api/axiosInstance';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
 
 interface IMovie {
@@ -11,6 +11,8 @@ interface IMovie {
   setFocus: (focus: string) => void;
   focused: boolean;
 }
+
+//Todo rename this component to card or single movie, because is more reusable to rename it to card and you can use it anytime
 
 function Movie({ data, focused }: IMovie) {
   return (
