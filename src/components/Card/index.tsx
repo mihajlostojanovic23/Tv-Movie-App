@@ -2,7 +2,8 @@ import React from 'react';
 import { getImageUrl } from '../../api/axiosInstance';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
 
-interface IMovie {
+//Interface
+interface ICard {
   data: {
     id: number;
     backdrop_path: string;
@@ -12,9 +13,8 @@ interface IMovie {
   focused: boolean;
 }
 
-//Todo rename this component to card or single movie, because is more reusable to rename it to card and you can use it anytime
 
-function Movie({ data, focused }: IMovie) {
+function Card({ data, focused }: ICard) {
   return (
     <div className="h-[330px] transition-all duration-500 ease-in-out">
       <img
@@ -32,4 +32,4 @@ function Movie({ data, focused }: IMovie) {
 
 export default withFocusable({
   trackChildren: true,
-})(Movie);
+})(Card);

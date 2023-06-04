@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { getDiscoverMovies } from '../../api/axiosInstance';
-import Movie from '../../components/Movie';
+import Card from '../../components/Card';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
 import Button from '../../components/Button';
 
@@ -13,7 +13,6 @@ export interface IMovieData {
 
 //Todo: Export types in type file
 //Todo: Export logic to custom hook
-//Todo: Solve any
 
 type setFocus = {
   setFocus: (focus: string) => void;
@@ -46,13 +45,14 @@ function Movies() {
   };
 
   return (
+    <div className='bg-[#292727] '>
     <div
       ref={scrollRef}
-      className="grid gap-4 grid-cols-4 items-center bg-[#292727] justify-center"
+      className="grid gap-4 grid-cols-4 items-center  justify-center"
     >
       {data?.pages.map((page) =>
-        page.results.map((movie: any) => (
-          <Movie
+        page.results.map((movie: IMovieData) => (
+          <Card
             key={movie.id}
             data={movie}
             onBecameFocused={onProgramFocused}
@@ -63,8 +63,11 @@ function Movies() {
           />
         ))
       )}
+      </div>
+      <div>HEJ BRO</div>
       {hasNextPage && (
-        <Button
+        <div className='w-[100%] justify-center flex bg-[red]'> 
+          <Button
           onEnterPress={({ setFocus }: setFocus) => {
             fetchNextPage();
             setFocus(
@@ -72,11 +75,9 @@ function Movies() {
             );
           }}
         />
-
-        // <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-        //   {isFetchingNextPage ? 'Loading more...' : 'Load More'}
-        // </button>
+        </div>
       )}
+    
     </div>
   );
 }

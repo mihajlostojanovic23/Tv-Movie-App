@@ -1,24 +1,13 @@
 import React from 'react';
-import { createContext, Dispatch, SetStateAction, useState } from 'react';
+import { createContext, useState } from 'react';
 
-// Interface
-interface IDataValueContext {
-  userInfo: object;
-  setUserInfo: Dispatch<SetStateAction<object>>;
-  userAuth: boolean;
-  setUserAuth: Dispatch<SetStateAction<boolean>>;
-}
-
-interface UserProviderProps {
-  children: React.ReactNode;
-}
-
-//Todo: Expoort this interfaces to types.ts file inside context folder
+//Interfaces
+import {IDataValueContext, UserProviderProps} from './types'
 
 const UserContext = createContext<IDataValueContext>({
   userInfo: {},
   setUserInfo: () => null,
-  userAuth: false,
+  userAuth: true,
   setUserAuth: () => null,
 });
 

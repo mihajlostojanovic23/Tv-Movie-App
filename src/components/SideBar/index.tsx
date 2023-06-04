@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
 
 import { MenuData } from '../../data/MenuData';
-import MenuItem from './SideBarItem';
+import MenuItem from './SidebarItem';
 import UserContext from '../../context/userContext';
 import { useHistory } from 'react-router-dom';
 
@@ -10,13 +10,12 @@ interface ISideBar {
   hasFocusedChild: boolean;
 }
 
-//Todo rename alert in something logic
 //Todo move Sidebar to layout folder
 
 function SideBar({ hasFocusedChild }: ISideBar) {
   const history = useHistory();
   const { userAuth } = useContext(UserContext);
-  const Alert = (route: string) => history.push(`${route}`);
+  const ShowId = (route: string) => history.push(`${route}`);
   return (
     <div
       className={` bg-[#000000] h-[100vh] flex justify-center pt-[10px] ${
@@ -33,7 +32,7 @@ function SideBar({ hasFocusedChild }: ISideBar) {
                 key={item.id}
                 data={item}
                 focusKey={`item-${item.id}`}
-                onEnterPress={() => Alert(item.route)}
+                onEnterPress={() => ShowId(item.route)}
               />
             )
         )}

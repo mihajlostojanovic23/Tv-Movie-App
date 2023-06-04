@@ -1,36 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import Layout from '../components/layouts/Layout';
+import Layout from '../../components/layouts/Layout';
+import UserContext, { UserProvider } from '../../context/userContext';
 
+//Interface
 interface IPrivateRouteProps {
-  isAuthenticated: boolean;
-  component: React.ComponentType<any>;
+  component: React.ComponentType;
   path: string;
   exact: boolean;
-  // Add any additional props if needed
 }
 
-//Todo: Solve any
-//Todo: Add User context and wrap inside Route
 
 const PrivateRoute: React.FC<IPrivateRouteProps> = ({
-  isAuthenticated,
+  
   component: Component,
   ...restProps
 }) => {
+  const { userAuth } = useContext(UserContext);
+console.log(userAuth)
   return (
+    <UserProvider>
     <Route
       {...restProps}
-      render={(props) =>
-        isAuthenticated ? (
+      render={() =>
+        userAuth ? (
           <Layout>
-            <Component {...props} />
+            <Component  />
           </Layout>
         ) : (
           <Redirect to="/signin" />
         )
       }
     />
+    </UserProvider>
   );
 };
 
