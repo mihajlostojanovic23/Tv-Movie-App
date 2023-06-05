@@ -13,11 +13,10 @@ export default axiosInstance;
 
 //Todo In this file you must export only axiosINstance
 //TOdo This functions export to other folders for example movies/index.tsx and export default this function
-//Todo solve any
 
-export const fetchData = async (url: any) => {
+export const fetchData = async (url: string | undefined) => {
   try {
-    const response = await axiosInstance.get(url);
+    const response = await axiosInstance.get(url || '');
     console.log(response);
     return response.data;
   } catch (error) {
