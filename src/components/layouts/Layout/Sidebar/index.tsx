@@ -1,16 +1,13 @@
 import React, { useContext } from 'react';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
 
-import { MenuData } from '../../data/MenuData';
-import MenuItem from './SidebarItem';
-import UserContext from '../../context/userContext';
 import { useHistory } from 'react-router-dom';
-
+import UserContext from '../../../../context/userContext';
+import { MenuData } from '../../../../data/MenuData';
+import MenuItem from './SideBarItem/';
 interface ISideBar {
   hasFocusedChild: boolean;
 }
-
-//Todo move Sidebar to layout folder
 
 function SideBar({ hasFocusedChild }: ISideBar) {
   const history = useHistory();
@@ -27,7 +24,7 @@ function SideBar({ hasFocusedChild }: ISideBar) {
       <div className="flex justify-center flex-col items-center">
         {MenuData.map(
           (item) =>
-            item.userAuth === userAuth && (
+            userAuth && (
               <MenuItem
                 key={item.id}
                 data={item}

@@ -2,7 +2,7 @@ import React from 'react';
 import { createContext, useState } from 'react';
 
 //Interfaces
-import {IDataValueContext, UserProviderProps} from './types'
+import { IDataValueContext, UserProviderProps } from './types';
 
 const UserContext = createContext<IDataValueContext>({
   userInfo: {},

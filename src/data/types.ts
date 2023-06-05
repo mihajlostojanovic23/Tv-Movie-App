@@ -1,6 +1,5 @@
 export interface IMenuData {
-    id: number,
-    title: string,
-    userAuth: boolean,
-    route: string
-  }
+  id: number;
+  title: string;
+  route: string;
+}

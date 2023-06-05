@@ -4,7 +4,9 @@ export const fetchDiscoverMovies = (page: number) => {
   return axios({
     method: 'GET',
     url: `${process.env.REACT_APP_API_DISCOVERY}`,
-    params: page,
+    params: {
+      page: page,
+    },
   });
 };
 

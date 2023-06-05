@@ -1,43 +1,30 @@
-import React, { useRef } from 'react';
-import { useInfiniteQuery } from 'react-query';
-import { getDiscoverMovies } from '../../api/axiosInstance';
-import Card from '../../components/Card';
+import React, { useContext } from 'react';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
+
+//Components
+import Card from '../../components/Card';
 import Button from '../../components/Button';
 
-export interface IMovieData {
-  id: number;
-  backdrop_path: string;
-  original_title: string;
-}
+//Interface
+import { IMovieData } from './types';
 
-//Todo: Export types in type file
-//Todo: Export logic to custom hook
+//Custom hook
+import { useMovies } from './useMovies';
+
+//Context
+import MoviesContext from '../../context/moviesContext';
 
 type setFocus = {
   setFocus: (focus: string) => void;
 };
 
 function Movies() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const { fetchNextPage, hasNextPage, data, scrollRef, isFetchingNextPage } =
+    useMovies();
+  const { moviesId, setMoviesId } = useContext(MoviesContext);
+  const onProgramFocused = ({ y }: { y: number }, { id }: { id: number }) => {
+    setMoviesId(id);
 
-  const fetchMovies = async (page = 1) => {
-    const data = await getDiscoverMovies(page);
-
-    return data;
-  };
-
-  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    'movies',
-    ({ pageParam }) => fetchMovies(pageParam),
-    {
-      getNextPageParam: (lastPage) => {
-        const currentPage = lastPage.page || 1;
-        return currentPage + 1;
-      },
-    }
-  );
-  const onProgramFocused = ({ y }: { y: number }) => {
     if (scrollRef.current) {
       scrollRef.current.style.transform = `translateY(-${y}px)`;
       scrollRef.current.style.transition = '300ms';
@@ -45,39 +32,36 @@ function Movies() {
   };
 
   return (
-    <div className='bg-[#292727] '>
-    <div
-      ref={scrollRef}
-      className="grid gap-4 grid-cols-4 items-center  justify-center"
-    >
-      {data?.pages.map((page) =>
-        page.results.map((movie: IMovieData) => (
-          <Card
-            key={movie.id}
-            data={movie}
-            onBecameFocused={onProgramFocused}
-            focusKey={`movie-${movie.id}`}
-            onEnterPress={() => {
-              alert(movie.id);
+    <div className="bg-[#292727] " ref={scrollRef}>
+      <div className=" grid gap-4 grid-cols-4 items-center  justify-center">
+        {data?.pages.map((page) =>
+          page.results.map((movie: IMovieData) => (
+            <Card
+              id={movie.id}
+              key={movie.id}
+              data={movie}
+              movies={page}
+              onBecameFocused={onProgramFocused}
+              focusKey={`movie-${movie.id}`}
+              onEnterPress={() => {
+                alert(movie.id);
+              }}
+            />
+          ))
+        )}
+      </div>
+
+      {hasNextPage && (
+        <div className="w-[100%] justify-center items-center flex bg-[#292727]">
+          <Button
+            onEnterPress={({ setFocus }: setFocus) => {
+              fetchNextPage();
+              setFocus(`movie-${moviesId}`);
+              isFetchingNextPage;
             }}
           />
-        ))
-      )}
-      </div>
-      <div>HEJ BRO</div>
-      {hasNextPage && (
-        <div className='w-[100%] justify-center flex bg-[red]'> 
-          <Button
-          onEnterPress={({ setFocus }: setFocus) => {
-            fetchNextPage();
-            setFocus(
-              `movie-${data?.pages[data?.pages.length - 1]?.results[16].id}`
-            );
-          }}
-        />
         </div>
       )}
-    
     </div>
   );
 }

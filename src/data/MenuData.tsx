@@ -1,12 +1,9 @@
-import {IMenuData} from './types'
-// Todo: Try to remove userAuth because you already put components in private or public route
-
-
+import { IMenuData } from './types';
 
 export const MenuData: IMenuData[] = [
-  { id: 1, title: 'Home', userAuth: true, route: '/' },
-  { id: 2, title: 'Settings', userAuth: true, route: '/settings' },
-  { id: 3, title: 'My List', userAuth: true, route: '/mylist' },
-  { id: 4, title: 'Login', userAuth: false, route: '/login' },
-  { id: 5, title: 'Logout', userAuth: true, route: '/logout' },
+  { id: 1, title: 'Home', route: '/' },
+  { id: 2, title: 'Settings', route: '/settings' },
+  { id: 3, title: 'My List', route: '/mylist' },
+  { id: 4, title: 'Login', route: '/login' },
+  { id: 5, title: 'Logout', route: '/logout' },
 ];
