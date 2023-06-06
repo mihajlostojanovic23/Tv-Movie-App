@@ -1,7 +1,7 @@
 import React from 'react';
 import { getImageUrl } from '../../api/axiosInstance';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
-import NotFound from '../../assets/img/notfound.jpg';
+import NotFound from '../../assets/imgs/notfound.jpg';
 //Interface
 interface ICard {
   data: {

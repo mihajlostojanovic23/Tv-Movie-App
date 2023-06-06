@@ -18,14 +18,14 @@ type setFocus = {
   setFocus: (focus: string) => void;
 };
 
-function Movies({ hasFocusedChild }: { hasFocusedChild: any }) {
+function Movies({ hasFocusedChild }: { hasFocusedChild: boolean }) {
   console.log(hasFocusedChild);
   const { fetchNextPage, hasNextPage, data, scrollRef, isFetchingNextPage } =
     useMovies();
   const { moviesId, setMoviesId } = useContext(MoviesContext);
   const onProgramFocused = ({ y }: { y: number }, { id }: { id: number }) => {
     setMoviesId(id);
-
+    console.log(y);
     if (scrollRef.current) {
       scrollRef.current.style.transform = `translateY(-${y}px)`;
       scrollRef.current.style.transition = '300ms';
@@ -34,10 +34,10 @@ function Movies({ hasFocusedChild }: { hasFocusedChild: any }) {
 
   return (
     <div
-      className="bg-[#000000] mx-[10px] w-[100%] flex-col items-center justify-center"
+      className="bg-[#000000] mx-[5px] w-[100%] flex-col items-center justify-center"
       ref={scrollRef}
     >
-      <div className={`grid gap-4 grid-cols-4 items-center  justify-center`}>
+      <div className={`grid gap-1 grid-cols-4 items-center  justify-center`}>
         {data?.pages.map((page) =>
           page.results.map((movie: IMovieData) => (
             <Card
