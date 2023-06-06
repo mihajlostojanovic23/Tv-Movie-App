@@ -15,7 +15,7 @@ const Routes: React.FC = () => {
   return (
     <Switch>
       <PrivateRoute component={Movies} path={'/'} exact={true} />
-      <PublicRoute component={Login} path={'/signin'} exact={true} />
+      <PublicRoute component={Login} path={'/login'} exact={true} />
 
       <PrivateRoute component={Settings} path={'/settings'} exact={true} />
       <PrivateRoute component={MyList} path={'/mylist'} exact={true} />

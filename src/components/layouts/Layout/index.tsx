@@ -12,7 +12,7 @@ const Layout: React.FC<SidebarProps> = ({ children }) => {
       <div className="sidebar text-[white] text-[30px]">
         <SideBar />
       </div>
-      <main className="flex-1 bg-[#292727]">{children}</main>
+      <main className="flex-1 bg-[#000000]">{children}</main>
     </div>
   );
 };

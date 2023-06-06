@@ -15,12 +15,10 @@ interface ICard {
 
 function Card({ data, focused }: ICard) {
   return (
-    <div className="h-[330px] transition-all duration-500 ease-in-out">
+    <div className="h-[330px] w-[400px] flex-col items-center justify-center transition-all duration-500 ease-in-out">
       <img
-        width={400}
-        height={225}
         className={`${
-          focused ? 'border-4 border-sky-500' : 'border-4 border-transparent'
+          focused ? 'border-4 border-white-500' : 'border-4 border-transparent'
         }`}
         src={
           data.backdrop_path !== null

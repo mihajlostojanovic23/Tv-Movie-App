@@ -18,7 +18,8 @@ type setFocus = {
   setFocus: (focus: string) => void;
 };
 
-function Movies() {
+function Movies({ hasFocusedChild }: { hasFocusedChild: any }) {
+  console.log(hasFocusedChild);
   const { fetchNextPage, hasNextPage, data, scrollRef, isFetchingNextPage } =
     useMovies();
   const { moviesId, setMoviesId } = useContext(MoviesContext);
@@ -32,8 +33,11 @@ function Movies() {
   };
 
   return (
-    <div className="bg-[#292727] " ref={scrollRef}>
-      <div className=" grid gap-4 grid-cols-4 items-center  justify-center">
+    <div
+      className="bg-[#000000] mx-[10px] w-[100%] flex-col items-center justify-center"
+      ref={scrollRef}
+    >
+      <div className={`grid gap-4 grid-cols-4 items-center  justify-center`}>
         {data?.pages.map((page) =>
           page.results.map((movie: IMovieData) => (
             <Card
@@ -52,7 +56,7 @@ function Movies() {
       </div>
 
       {hasNextPage && (
-        <div className="w-[100%] justify-center items-center flex bg-[#292727]">
+        <div className="w-[100%] justify-center items-center flex bg-[#000000]">
           <Button
             onEnterPress={({ setFocus }: setFocus) => {
               fetchNextPage();

@@ -15,7 +15,7 @@ function SideBar({ hasFocusedChild }: ISideBar) {
   const ShowId = (route: string) => history.push(`${route}`);
   return (
     <div
-      className={` bg-[#000000] h-[100vh] flex justify-center pt-[10px] ${
+      className={` bg-[#000000] border-r-2 h-[100vh] flex justify-center pt-[10px] ${
         hasFocusedChild
           ? 'w-[300px] transition-all duration-500 ease-in-out '
           : 'w-[200px] transition-all duration-500 ease-in-out '

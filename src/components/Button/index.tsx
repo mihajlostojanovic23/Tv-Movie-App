@@ -10,8 +10,10 @@ interface IButton {
 function Button({ focused, isFetchingNextPage }: IButton) {
   return (
     <div
-      className={`${
-        focused ? ' border-sky-500' : ' border-transparent'
+      className={`w-[300px] h-[70px] flex justify-center items-center${
+        focused
+          ? ' border-white-500 bg-[#414141]'
+          : ' border-transparent bg-[#1b1b1b]'
       } text-3xl border-2 text-[white] `}
     >
       {isFetchingNextPage ? 'Loading...' : 'Load more'}
